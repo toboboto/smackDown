@@ -7,17 +7,17 @@
 function wikiApiLoad(artistName) {
     var request = artistName.replace(/ /g, "_");
     $.ajax({
-        type: "GET",
         url: "http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=" + request + "&callback=?",
-        contentType: "application/json; charset=utf-8",
-        async: false,
         dataType: "jsonp",
-        success: function (data, textStatus, jqXHR) {
+        success: function (data) {
             $(".dummyLayout").html(data.parse.text["*"]);
             var infobox = $(".infobox tbody").find("tr");              //THIS ARRAY HOLDS ALL THE INFO WE NEED FROM WIKIPEDIA!!!
             test = infobox;                                 //dummy test array
             for(var i = 0; i <= infobox.length; i++){
                 if($(test[i]).find("th").text() == "Years active"){
+                    console.log($(test[i]).text());
+                }
+                if($(test[i]).find("th").text() == "Members"){
                     console.log($(test[i]).text());
                 }
             }
@@ -27,12 +27,3 @@ function wikiApiLoad(artistName) {
         }
     });
 }
-
-
-//    $(".artist").click(function(){
-//        var artist = $(this).find("p").text;
-//        console.log("yay");
-//        var request = "Father_John_Misty";
-//
-//    });
-//});
