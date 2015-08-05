@@ -12,12 +12,15 @@ function wikiApiLoad(artistName) {
         success: function (data) {
             $(".dummyLayout").html(data.parse.text["*"]);
             var infobox = $(".infobox tbody").find("tr");              //THIS ARRAY HOLDS ALL THE INFO WE NEED FROM WIKIPEDIA!!!
-            test = infobox;                                 //dummy test array
             for(var i = 0; i <= infobox.length; i++){
-                if($(test[i]).find("th").text() == "Years active"){
+                if($(infobox[i]).find("th").text() == "Years active"){
                     console.log($(test[i]).text());
                 }
-                if($(test[i]).find("th").text() == "Members"){
+                if($(infobox[i]).find("th").text() == "Members"){
+                    var divmembers = $("<div>",{
+                        class: "members"
+                        text: $(infobox[i]).find("th").text();
+                    })
                     console.log($(test[i]).text());
                 }
             }
