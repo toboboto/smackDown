@@ -67,6 +67,8 @@ function appleApiRetrieve(){
             var musicFind = global_result.feed.entry;
             var musicLength = musicFind.length;
             var $body = $("body");
+            var $grid = $(".musicGrid");
+
             for (var i = 0; i < musicLength; i++) {
                 var thirdImage = musicFind[i]["im:image"][2].label;
                 var h3Title = $("<h3>", {
@@ -83,13 +85,18 @@ function appleApiRetrieve(){
                     class: "col-xs-4 artist",
                 });
                 musicContainer.append(h3Title, pArtist, img)
+
                 $body.append(musicContainer);
+
+                $grid.append(musicContainer);
 
                 //GIVES EACH ALBUM A CLICK HANDLER WHICH CALLS WIKIAPILOAD
                 (function () {
                     $(musicContainer).click(function () {       //UNIVERSAL CLICK HANDLER TO PASS NAME
                         var artist = $(this).find(".artistName").text();  //NAME TO BE USED TO LOAD INTO ALL FUNCTIONS
                         console.log("Artist:", artist);
+
+                        $(".artistModal").fadeIn();
                         wikiApiLoad(artist);                    //WIKIPEDIA API LOAD AND DUMP
                     });
                 })();
@@ -102,6 +109,9 @@ function appleApiRetrieve(){
 
 //ON DOCUMENT LOAD
 $(document).ready(function() {
+    //Hide the modal
+    $(".artistModal").hide();
+
     //Hidden div to store potential data
     $(".dummyLayout").hide();
 
