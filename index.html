@@ -9,15 +9,30 @@
     <script src="main.js"></script>
 </head>
 <body>
-<!--<form action="http://www.wikipedia.org/search-redirect.php" method="get">
-    Search Wikipedia:
-    <input type="hidden" name="language" value="en" />
-    <input type="text" name="search" size="20" />
-    <input type="submit" name="go" value=" Go! " id = "wikiSearch"/>
-</form>-->
-<div class = "tophits"></div>
+
+<!-------------Genre Dropdown Box----------------->
+<div role="presentation" class="dropdown">
+    <select class="genreDropDown btn-info">
+    </select>
+</div>
+
+<!-----------Search Type Dropdown Box------------->
+<div role="presentation" class="dropdown">
+    <select class="searchTypeDropDown btn-info">
+    </select>
+</div>
+
+<!-----------Search Limit Dropdown Box------------>
+<div role="presentation" class="dropdown">
+    <select class="limit btn-info">
+    </select>
+</div>
+
+<!-----------Search Button------------------------>
 <button id = "getHits">Get Apple RSS hits</button>
-<button id = "go">WIKI API</button>
+
+
+<div class = "tophits"></div>
 <div class = "dummyLayout"></div>
 </body>
 </html>
