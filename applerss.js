@@ -98,6 +98,7 @@ function appleApiRetrieve(){
                         $('.modal').modal();
                         $('#modal').modal('toggle');
                         //$(".artistModal").fadeIn();  // test remove to equip bootstrap modal
+                        
                         wikiApiLoad(artist);                    //WIKIPEDIA API LOAD AND DUMP
                     });
                 })();
