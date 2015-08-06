@@ -10,6 +10,7 @@ var albumSpotifyImgURL;
 var spotifyAlbum;
 var spotifyTrackURI;
 var search_value = "";
+var audio;
 
 var searchArtists = function (query) {
     $.ajax({
@@ -27,7 +28,7 @@ var searchArtists = function (query) {
             console.log(artistSpotifyID);
             artistSpotifyImgURL = artistSpotifyObj.artists.items[0].images[0].url;
             console.log(artistSpotifyImgURL);
-            $(".dummyLayout").append("<img src='"+artistSpotifyImgURL+"'>").show();
+            $(".firstLeftBar").append("<img src='"+artistSpotifyImgURL+"'>");
             console.log(search_value);
 
         }
@@ -62,9 +63,9 @@ var getTrackURI = function (albumId) {
             console.log(spotifyTrackURI);
             $(".spotify_player").attr("src","https://embed.spotify.com/?uri="+ spotifyTrackURI);
             var preview_link = spotifyAlbum.tracks.items[0].preview_url;
-            var test = new Audio(preview_link);
-            test.play();
-
+            audio = new Audio(preview_link);
+            audio.play();
+            console.log("audio",audio);
             (function() {
                 $(".clickable").trigger('click');
             })();
@@ -73,16 +74,12 @@ var getTrackURI = function (albumId) {
 };
 
 function play(){
-
     console.log("play");
 }
 
 
-$(document).ready(function(){
+function modalClose(){
+    audio.pause();
+    $(".firstLeftBar").empty();
 
-    $("#spotify_submit").click(function(){
-        console.log(search_value);
-        searchArtists($(".spotify_search").val());
-        searchAlbums($(".spotify_search").val());
-    })
-})
+}

@@ -1,5 +1,6 @@
 var test;
 var global_result = null;
+var artist;
 
 //Array to store genres and their apple rss id's with a select box
 var searchGenre =[
@@ -93,12 +94,15 @@ function appleApiRetrieve(){
                 //GIVES EACH ALBUM A CLICK HANDLER WHICH CALLS WIKIAPILOAD
                 (function () {
                     $(musicContainer).click(function () {       //UNIVERSAL CLICK HANDLER TO PASS NAME
-                        var artist = $(this).find(".artistName").text();  //NAME TO BE USED TO LOAD INTO ALL FUNCTIONS
+                        artist = $(this).find(".artistName").text();  //NAME TO BE USED TO LOAD INTO ALL FUNCTIONS
                         console.log("Artist:", artist);
                         $('.modal').modal();
                         $('#modal').modal('toggle');
                         //$(".artistModal").fadeIn();  // test remove to equip bootstrap modal
-                        wikiApiLoad(artist);                    //WIKIPEDIA API LOAD AND DUMP
+                        wikiApiLoad(artist);
+
+                        searchArtists(artist);
+                        searchAlbums(artist);//WIKIPEDIA API LOAD AND DUMP
                     });
                 })();
             }
