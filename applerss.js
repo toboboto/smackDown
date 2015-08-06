@@ -95,8 +95,9 @@ function appleApiRetrieve(){
                     $(musicContainer).click(function () {       //UNIVERSAL CLICK HANDLER TO PASS NAME
                         var artist = $(this).find(".artistName").text();  //NAME TO BE USED TO LOAD INTO ALL FUNCTIONS
                         console.log("Artist:", artist);
-
-                        $(".artistModal").fadeIn();
+                        $('.modal').modal();
+                        $('#modal').modal('toggle');
+                        //$(".artistModal").fadeIn();  // test remove to equip bootstrap modal
                         wikiApiLoad(artist);                    //WIKIPEDIA API LOAD AND DUMP
                     });
                 })();
@@ -110,7 +111,7 @@ function appleApiRetrieve(){
 //ON DOCUMENT LOAD
 $(document).ready(function() {
     //Hide the modal
-    $(".artistModal").hide();
+    //$(".artistModal").hide(); // test
 
     //Hidden div to store potential data
     $(".dummyLayout").hide();
