@@ -112,7 +112,6 @@ function appleApiRetrieve(){
 //ON DOCUMENT LOAD
 $(document).ready(function() {
     //Hide the modal
-    //$(".artistModal").hide(); // test
 
     //Hidden div to store potential data
     $(".dummyLayout").hide();
