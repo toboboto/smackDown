@@ -88,12 +88,11 @@ function modalClose(){
 
 }
 
-$(document).ready(function() {
-    $("#show-widget").click(function() {
-        new BIT.Widget({
-            "artist":artist,
-            "div_id":"tour-dates",
-            "bg_color": "#FFFFFF"
-        }).insert_events();
-    });
-});
+function search() {
+    artist = $(".search_field").val();  //NAME TO BE USED TO LOAD INTO ALL FUNCTIONS
+    console.log("Artist:", artist);
+    $('.modal').modal();
+    $('#modal').modal('toggle');
+    searchArtists(artist);
+    searchAlbums(artist);//WIKIPEDIA API LOAD AND DUMP
+};
