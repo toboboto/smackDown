@@ -70,8 +70,8 @@ var getTrackURI = function (albumId) {
             audio = new Audio(preview_link);
             audio.play();
             console.log("audio",audio);
-            $(".firstRightBar").append("<script type='text/javascript' src='http://www.bandsintown.com/javascripts/bit_widget.js'></script>").append("<a href='http://www.bandsintown.com' class='bit-widget-initializer' data-artist='"+artist+"'>Bandsintown</a>");
-
+            $(".shows").append("<script type='text/javascript' src='http://www.bandsintown.com/javascripts/bit_widget.js'></script>");
+            $(".shows").append("<a href='http://www.bandsintown.com' class='bit-widget-initializer' data-artist='"+artist+"'>Bandsintown</a>");
         }
     });
 };
@@ -84,7 +84,7 @@ function play(){
 function modalClose(){
     audio.pause();
     $(".firstLeftBar").empty();
-    $(".firstRightBar").empty();
+    $(".shows").empty();
 
 }
 
