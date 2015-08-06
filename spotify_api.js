@@ -31,7 +31,7 @@ var searchArtists = function (query) {
             console.log(artistSpotifyImgURL);
             artistSpotifyURI = artistSpotifyObj.artists.items[0].uri;
             $(".spotify_follow").attr("src","https://embed.spotify.com/follow/1/?uri="+ artistSpotifyURI);
-            $(".firstLeftBar").append("<img src='"+artistSpotifyImgURL+"'>");
+            $(".imageContainer").append("<img class='artistBg' src='"+artistSpotifyImgURL+"'>");
             console.log(search_value);
 
 
@@ -83,7 +83,7 @@ function play(){
 
 function modalClose(){
     audio.pause();
-    $(".firstLeftBar").empty();
+    $(".imageContainer").empty();
     $(".shows").empty();
 
 }

@@ -10,138 +10,24 @@
     <link rel="stylesheet" href="bootstrap/3.3.5/bootstrap.min.css">
     <!-- Optional theme -->
     <link rel="stylesheet" href="bootstrap/3.3.5/bootstrap-theme.min.css">
-<<<<<<< HEAD
     <link href='http://fonts.googleapis.com/css?family=Yantramanav:400,100' rel='stylesheet' type='text/css'>
-=======
     <link rel="stylesheet" type="text/css" href="style.css">
->>>>>>> origin/smackMerge
     <!-- Latest compiled and minified JavaScript -->
     <script src="bootstrap/3.3.5/bootstrap.min.js"></script>
     <script src="applerss.js"></script>
+    <script src="spotify_api.js"></script>
     <script src="wikiApi.js"></script>
     <script src="tobo.js"></script>
-    <script src="spotify_api.js"></script>
     <!-- mobile first -->
-<script>
-
-
-    $('.closeButton').click(function()
-    {
-        console.log ('clicked close');
-        $('.artistModal').fadeOut();
-    });
-</script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        * {
-            #border: 1px solid black;
-            font-family: Yantramanav;
-            #margin: -1px;
-        }
-        body
-        {
-            font-size: 0; /*eliminates space created by /n*/
-        }
-
-        div
-        {
-            font-size: initial;  /*sets back to initial font size not inherited*/
-        }
-        .members a{
-            pointer-events: none;
-        }
-    .headerRow
-    {
-        /*position: fixed;*/
-        height: 15vh;
-    }
-    .headerRow  div
-    {
-        min-height: 2.5em;
-        height: 12vh;
-    }
-    .leftHeaderBar
-    {
-        background-color: lightblue;
-    }
-    .rightHeaderBar
-    {
-        background-color: lightgreen;
-    }
-    .centerHeaderBar
-    {
-        background-color: lightgray;
-    }
-    .firstBar
-    {
-        height: auto;
-        min-height: 50vh;
-    }
-    .artistModal{
-        width: 90%;
-        margin-left: 5%;
-        height: 80vw;
-       /*position:absolute;*/
-        background-color: lightgrey;
-        /*opacity: 0.95;*/
-
-    }
-        .artistModal{
-            position:fixed;
-            background: white;
-            top: 20px;
-            height: 95%;
-        }
-        .dropBtn{
-            display: inline-block;
-            background: #e0e0e0;
-            border: none;
-            height: 40px;
-            border-radius: 0;
-        }
-        .dropBtn:hover{
-            background: #9d9d9d;
-
-        }
-
-        img {
-            width: 100%;
-            height: auto;
-        }
-
-        .close {
-            margin-top: 20px;
-            font-size: 50px;
-        }
-
-        .spotify_player{
-            text-align: center;
-            border: 1px solid;
-            display: inline-block;
-        }
-
-        .headerRow{
-            top: 20px;
-            width: 95%;
-        }
-
-        .firstRow{
-            margin-top: 120px;
-        }
-
-        .firstRightBar{
-            text-align: center;
-        }
-
-    </style>
 
 </head>
 <body>
 
 <div class="container"> <!-- main container -->
 
-    <div class = "col-xs-12">
+    <div class = "headerBar col-xs-12">
         <!--Genre Dropdown Box-->
         <div role="presentation" class="dropdown col-xs-3">
             <select class="genreDropDown dropBtn btn-info">
@@ -166,7 +52,7 @@
         <button type="button" id="search_button" onclick="search()">Search</button>
 
     </div>
-    <div class = "musicGrid col-xs-12">
+    <div class = "musicGrid col-xs-12 text-center">
     </div>
 
     <div class = "artistModal modal fade col-xs-12">
@@ -184,7 +70,12 @@
 
         </div>
         <div class="row firstRow">
-            <div class="col-xs-12 col-sm-8 col-md-8 full-height firstBar firstLeftBar"></div>
+            <div class="col-xs-12 col-sm-8 col-md-8 full-height firstBar firstLeftBar">
+                <div class = "imageContainer"></div>
+                <div class="artistInfo col-xs-10 col-sm-8 col-md-8 text-center"></div>
+
+            </div>
+
             <div class="col-xs-12 col-sm-4 col-md-4 full-height firstBar firstRightBar">
                 <p>Spotify</p>
                 <iframe class="spotify_follow" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
