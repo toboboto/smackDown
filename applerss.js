@@ -108,6 +108,7 @@ function appleApiRetrieve(){
 //__________________END appleApiRetrieve()_________/
 
 
+
 //ON DOCUMENT LOAD
 $(document).ready(function() {
     //Hide the modal
