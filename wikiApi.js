@@ -3,14 +3,13 @@
  * PURPOSE: Called when artist image is pressed, compiles infobox data into arrays to append to page
  * PARAMETERS: artistName (The name passed into wikipedia to extrapolate data)
  */
-var test;
-
 function wikiApiLoad(artistName) {
     var request = artistName.replace(/ /g, "_");
     $.ajax({
         url: "http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=" + request + "&callback=?",
         dataType: "jsonp",
         success: function (data) {
+            $(".dummyLayout").html("");
             $(".dummyLayout").html(data.parse.text["*"]);
 
             //REDIRECT FIX
@@ -27,13 +26,13 @@ function wikiApiLoad(artistName) {
                 wikiApiLoad(request + "_(musician)");
             }
 
-            var infobox = $(".infobox tbody").find("tr");              //THIS ARRAY HOLDS ALL THE INFO WE NEED FROM WIKIPEDIA!!!
-            $(".artistInfo").html("");                                 //RESET
-
             //If we ran this function through the multiple search fix, we have to cut off "_(musician)"
             if (artistName.substr(artistName.length-11)=="_(musician)"){
                 artistName = artistName.substr(0, artistName.length-11);
             }
+
+            var infobox = $(".infobox tbody").find("tr");              //THIS ARRAY HOLDS ALL THE INFO WE NEED FROM WIKIPEDIA!!!
+            $(".artistInfo").html("");                                 //RESET
 
             var header = $("<h2>",{
                 text: artistName,
@@ -104,13 +103,44 @@ function wikiApiLoad(artistName) {
     });
 }
 
+/****************************************************************************
+ * FUNCTION NAME: wikiApiLoad
+ * PURPOSE: Called when artist image is pressed, compiles infobox data into arrays to append to page
+ * PARAMETERS: artistName (The name passed into wikipedia to extrapolate data)
+ */
+
+
 function affiliatedArtist(memberName){
     var request = memberName.replace(/ /g, "_");
     $.ajax({
         url: "http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=" + request + "&callback=?",
         dataType: "jsonp",
         success: function (data) {
+            $(".dummyLayout").html("");
             $(".dummyLayout").html(data.parse.text["*"]);
+
+
+            //REDIRECT FIX
+            var redirectStore = $(".redirectText");
+            if(redirectStore[0] != undefined){
+                //If the search is a redirect, take the redirect title and plug it back into this function to search again
+                affiliatedArtist($(".redirectText").find("a").text());
+            }
+
+            //MULTIPLE SEARCH FIX
+            var multiStore = $(".dummyLayout p:first-child").text();
+            var multiCheck = multiStore.substr(multiStore.length-9);
+            if (multiCheck == "refer to:"){
+                console.log("I ran");
+                affiliatedArtist(request + "_(musician)");
+            }
+
+            //If we ran this function through the multiple search fix, we have to cut off "_(musician)"
+            if (memberName.substr(memberName.length-11)=="_(musician)"){
+                memberName = memberName.substr(0, memberName.length-11);
+            }
+
+
             var infobox = $(".infobox tbody").find("tr");              //THIS ARRAY HOLDS ALL THE INFO WE NEED FROM WIKIPEDIA!!!
             for(var i = 0; i <= infobox.length; i++){
                 if($(infobox[i]).find("th").text() == "Associated acts") {
@@ -128,10 +158,13 @@ function affiliatedArtist(memberName){
                     });
                     $(divContainer).append(header, divassociated);
                     $(".artistInfo").append(divContainer);
+                    $('.associated a').removeAttr('href');
+
                 }
             }
         },
         error: function (errorMessage) {
+            console.log("NO WORK");
         }
     });
 }
