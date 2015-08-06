@@ -159,9 +159,12 @@ function affiliatedArtist(memberName){
                     $(divContainer).append(header, divassociated);
                     $(".artistInfo").append(divContainer);
                     $('.associated a').removeAttr('href');
-
                 }
             }
+            $(".associated").on("click", "a", function(){
+                var affiliatedName = $(this).text();
+                wikiApiLoad(affiliatedName);
+            });
         },
         error: function (errorMessage) {
             console.log("NO WORK");
