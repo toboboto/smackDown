@@ -12,6 +12,7 @@ var spotifyAlbum;
 var spotifyTrackURI;
 var search_value = "";
 var audio;
+var spotifyArtistName;
 
 var searchArtists = function (query) {
     $.ajax({
@@ -33,8 +34,8 @@ var searchArtists = function (query) {
             $(".spotify_follow").attr("src","https://embed.spotify.com/follow/1/?uri="+ artistSpotifyURI);
             $(".imageContainer").append("<img class='artistBg' src='"+artistSpotifyImgURL+"'>");
             console.log(search_value);
-
-
+            spotifyArtistName = artistSpotifyObj.artists.items[0].name;
+            $(".centerHeaderBar").append("<h2 class='text-center'>"+spotifyArtistName+"</h2>");
         }
     });
 };
@@ -85,6 +86,7 @@ function modalClose(){
     audio.pause();
     $(".imageContainer").empty();
     $(".shows").empty();
+    $(".centerHeaderBar").empty();
 
 }
 
@@ -95,4 +97,5 @@ function search() {
     $('#modal').modal('toggle');
     searchArtists(artist);
     searchAlbums(artist);//WIKIPEDIA API LOAD AND DUMP
+    wikiApiLoad(spotifyArtistName);
 };

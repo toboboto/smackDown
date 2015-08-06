@@ -39,18 +39,12 @@ div
     min-height: 2.5em;
     height: 12vh;
 }
-.leftHeaderBar
-{
-    background-color: lightblue;
-}
+
 .rightHeaderBar
 {
     background-color: lightgreen;
 }
-.centerHeaderBar
-{
-    background-color: lightgray;
-}
+
 .firstBar
 {
     height: auto;
@@ -182,3 +176,12 @@ img {
     display: inline-block;
     margin-bottom: 8px;
 }
+
+.centerHeaderBar{
+    background-color: lightgreen;
+}
+
+.centerHeaderBar h1{
+    padding-top: 10px;
+}
+
