@@ -5,17 +5,30 @@
     <title>MusicView</title>
     <!-- jquery cdn -->
     <script src="jquery/2.1.3/jquery.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
+    <!-- Latest compiled and minified CSS -->54
     <link rel="stylesheet" href="bootstrap/3.3.5/bootstrap.min.css">
     <!-- Optional theme -->
     <link rel="stylesheet" href="bootstrap/3.3.5/bootstrap-theme.min.css">
+<<<<<<< HEAD
     <link href='http://fonts.googleapis.com/css?family=Yantramanav:400,100' rel='stylesheet' type='text/css'>
+=======
+    <link rel="stylesheet" type="text/css" href="style.css">
+>>>>>>> origin/smackMerge
     <!-- Latest compiled and minified JavaScript -->
     <script src="bootstrap/3.3.5/bootstrap.min.js"></script>
     <script src="applerss.js"></script>
     <script src="wikiApi.js"></script>
+    <script src="tobo.js"></script>
     <!-- mobile first -->
+<script>
 
+
+    $('.closeButton').click(function()
+    {
+        console.log ('clicked close');
+        $('.artistModal').fadeOut();
+    });
+</script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
@@ -60,7 +73,17 @@
     }
     .firstBar
     {
-        height: 50vh;
+        height: auto;
+        min-height: 50vh;
+    }
+    .artistModal{
+        width: 90%;
+        margin-left: 5%;
+        height: 80vw;
+       /*position:absolute;*/
+        background-color: lightgrey;
+        /*opacity: 0.95;*/
+
     }
         .artistModal{
             position:absolute;
@@ -82,8 +105,6 @@
 
 </head>
 <body>
-
-
 
 <div class="container"> <!-- main container -->
 
@@ -112,7 +133,7 @@
     <div class = "musicGrid col-xs-12">
     </div>
 
-    <div class = "artistModal col-xs-12">
+    <div class = "artistModal modal fade col-xs-12">
         <div class="row headerRow">
             <div class="col-xs-6 col-md-3 full-height header_bar leftHeaderBar">left header</div>
             <div class="col-xs-6 col-md-3 full-height header_bar centerHeaderBar">right header</div>
@@ -129,16 +150,15 @@
             <div class="col-xs-6 col-sm-3 col-md-3 full-height footer_bar leftfooterBar">left footer</div>
             <div class="col-xs-6 col-sm-3 col-md-3 full-height footer_bar rightfooterBar">left-center footer</div>
             <div class="col-xs-6 col-sm-3 col-md-3 full-height footer_bar leftfooterBar">right-center footer</div>
-            <div class="col-xs-6 col-sm-3 col-md-3 full-height footer_bar rightfooterBar">right footer</div>
+            <div class="col-xs-6 col-sm-3 col-md-3 full-height modalClose footer_bar rightfooterBar">
+                <button type="button" class="btn btn-lg btn-warning closeButton" data-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
-
 </div>
 
 
 <div class = "tophits"></div>
-
-
 <div class = "dummyLayout"></div>
 </body>
 
