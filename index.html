@@ -20,7 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         * {
-            border: 1px solid black;
+            #border: 1px solid black;
             font-family: Yantramanav;
             #margin: -1px;
         }
@@ -32,9 +32,6 @@
         div
         {
             font-size: initial;  /*sets back to initial font size not inherited*/
-        }
-        .artistModal{
-            background: white;
         }
         .members a{
             pointer-events: none;
@@ -67,6 +64,19 @@
     }
         .artistModal{
             position:absolute;
+            background: white;
+            top: 20px;
+        }
+        .dropBtn{
+            display: inline-block;
+            background: #e0e0e0;
+            border: none;
+            height: 40px;
+            border-radius: 0;
+        }
+        .dropBtn:hover{
+            background: #9d9d9d;
+
         }
     </style>
 
@@ -80,19 +90,19 @@
     <div class = "col-xs-12">
         <!--Genre Dropdown Box-->
         <div role="presentation" class="dropdown col-xs-3">
-            <select class="genreDropDown btn-info">
+            <select class="genreDropDown dropBtn btn-info">
             </select>
         </div>
 
         <!---Search Type Dropdown Box-->
         <div role="presentation" class="dropdown col-xs-3">
-            <select class="searchTypeDropDown btn-info">
+            <select class="searchTypeDropDown dropBtn btn-info">
             </select>
         </div>
 
         <!---Search Limit Dropdown Box-->
         <div role="presentation" class="dropdown col-xs-3">
-            <select class="limit btn-info">
+            <select class="limit dropBtn btn-info">
             </select>
         </div>
 
