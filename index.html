@@ -5,6 +5,7 @@
     <title>MusicView</title>
     <!-- jquery cdn -->
     <script src="jquery/2.1.3/jquery.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <!-- Latest compiled and minified CSS -->54
     <link rel="stylesheet" href="bootstrap/3.3.5/bootstrap.min.css">
     <!-- Optional theme -->
@@ -108,6 +109,13 @@
             height: auto;
         }
 
+        .close {
+            margin-top: 20px;
+            font-size: 50px;
+        }
+
+
+
     </style>
 
 </head>
@@ -143,8 +151,14 @@
     <div class = "artistModal modal fade col-xs-12">
         <div class="row headerRow">
             <div class="col-xs-6 col-md-3 full-height header_bar leftHeaderBar">left header</div>
-            <div class="col-xs-6 col-md-3 full-height header_bar centerHeaderBar">right header</div>
-            <div class="col-xs-12 col-md-6 full-height header_bar rightHeaderBar">center header</div>
+            <div class="col-xs-6 col-md-3 full-height header_bar centerHeaderBar">
+            </div>
+            <div class="col-xs-12 col-md-6 full-height header_bar rightHeaderBar">
+                <button type="button" class="btn btn-lg closeButton close" data-dismiss="modal" onclick="modalClose()">
+                    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                </button>
+
+            </div>
             <!--<div class="col-xs-12 col-sm-12 col-md-6 .visible-sm .hidden-lg .hidden-md full-height header_bar centerHeaderBar">center header</div>-->
 
         </div>
@@ -160,7 +174,7 @@
             <div class="col-xs-6 col-sm-3 col-md-3 full-height footer_bar rightfooterBar">left-center footer</div>
             <div class="col-xs-6 col-sm-3 col-md-3 full-height footer_bar leftfooterBar">right-center footer</div>
             <div class="col-xs-6 col-sm-3 col-md-3 full-height modalClose footer_bar rightfooterBar">
-                <button type="button" class="btn btn-lg btn-warning closeButton" data-dismiss="modal" onclick="modalClose()">Close</button>
+
             </div>
         </div>
     </div>
