@@ -5,154 +5,101 @@
     <title>MusicView</title>
     <!-- jquery cdn -->
     <script src="jquery/2.1.3/jquery.min.js"></script>
-    <!-- Latest compiled and minified CSS -->54
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="bootstrap/3.3.5/bootstrap.min.css">
     <!-- Optional theme -->
     <link rel="stylesheet" href="bootstrap/3.3.5/bootstrap-theme.min.css">
-<<<<<<< HEAD
     <link href='http://fonts.googleapis.com/css?family=Yantramanav:400,100' rel='stylesheet' type='text/css'>
-=======
     <link rel="stylesheet" type="text/css" href="style.css">
->>>>>>> origin/smackMerge
     <!-- Latest compiled and minified JavaScript -->
     <script src="bootstrap/3.3.5/bootstrap.min.js"></script>
     <script src="applerss.js"></script>
+    <script src="spotify_api.js"></script>
     <script src="wikiApi.js"></script>
     <script src="tobo.js"></script>
-    <script src="spotify_api.js"></script>
     <!-- mobile first -->
-<script>
-
-
-    $('.closeButton').click(function()
-    {
-        console.log ('clicked close');
-        $('.artistModal').fadeOut();
-    });
-</script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        * {
-            #border: 1px solid black;
-            font-family: Yantramanav;
-            #margin: -1px;
-        }
-        body
-        {
-            font-size: 0; /*eliminates space created by /n*/
-        }
-
-        div
-        {
-            font-size: initial;  /*sets back to initial font size not inherited*/
-        }
-        .members a{
-            pointer-events: none;
-        }
-    .headerRow
-    {
-        /*position: fixed;*/
-        height: 15vh;
-    }
-    .headerRow  div
-    {
-        min-height: 2.5em;
-        height: 12vh;
-    }
-    .leftHeaderBar
-    {
-        background-color: lightblue;
-    }
-    .rightHeaderBar
-    {
-        background-color: lightgreen;
-    }
-    .centerHeaderBar
-    {
-        background-color: lightgray;
-    }
-    .firstBar
-    {
-        height: auto;
-        min-height: 50vh;
-    }
-    .artistModal{
-        width: 90%;
-        margin-left: 5%;
-        height: 80vw;
-       /*position:absolute;*/
-        background-color: lightgrey;
-        /*opacity: 0.95;*/
-
-    }
-        .artistModal{
-            position:absolute;
-            background: white;
-            top: 20px;
-        }
-        .dropBtn{
-            display: inline-block;
-            background: #e0e0e0;
-            border: none;
-            height: 40px;
-            border-radius: 0;
-        }
-        .dropBtn:hover{
-            background: #9d9d9d;
-
-        }
-    </style>
 
 </head>
 <body>
 
+<div class = "getHitsLanding">
+    <p>Get Hits.</p>
+</div>
+
 <div class="container"> <!-- main container -->
 
-    <div class = "col-xs-12">
-        <!--Genre Dropdown Box-->
-        <div role="presentation" class="dropdown col-xs-3">
-            <select class="genreDropDown dropBtn btn-info">
-            </select>
-        </div>
+    <div class = "headerBar col-xs-12">
+        <div class = "col-md-8">
+            <!--Genre Dropdown Box-->
+            <div role="presentation" class="dropdown">
+                <select class="genreDropDown dropBtn btn-info">
+                </select>
+            </div>
 
-        <!---Search Type Dropdown Box-->
-        <div role="presentation" class="dropdown col-xs-3">
-            <select class="searchTypeDropDown dropBtn btn-info">
-            </select>
-        </div>
+            <!---Search Type Dropdown Box-->
+            <div role="presentation" class="dropdown">
+                <select class="searchTypeDropDown dropBtn btn-info">
+                </select>
+            </div>
 
-        <!---Search Limit Dropdown Box-->
-        <div role="presentation" class="dropdown col-xs-3">
-            <select class="limit dropBtn btn-info">
-            </select>
+            <!---Search Limit Dropdown Box-->
+            <div role="presentation" class="dropdown">
+                <select class="limit dropBtn btn-info">
+                </select>
+            </div>
+
+            <button id = "getHits" value = "get it">Get Apple RSS hits</button>
+
+
         </div>
 
         <!---Search Button-->
-        <button id = "getHits" value = "get it">Get Apple RSS hits</button>
+        <div class = "col-md-4 searchContainer">
+            <input type="text" class="search_field"/>
+            <button type="button" id="search_button" onclick="search()">Search</button>
+        </div>
+
     </div>
-    <div class = "musicGrid col-xs-12">
+    <div class = "musicGrid col-xs-12 text-center">
     </div>
 
     <div class = "artistModal modal fade col-xs-12">
-        <div class="row headerRow">
-            <div class="col-xs-6 col-md-3 full-height header_bar leftHeaderBar">left header</div>
-            <div class="col-xs-6 col-md-3 full-height header_bar centerHeaderBar">right header</div>
-            <div class="col-xs-12 col-md-6 full-height header_bar rightHeaderBar">center header</div>
+        <div class="row headerRow navbar-fixed-top">
+            <div class="col-xs-11 full-height header_bar centerHeaderBar">
+            </div>
+            <div class="col-xs-1 full-height header_bar rightHeaderBar">
+                <button type="button" class="btn btn-lg closeButton close" data-dismiss="modal" onclick="modalClose()">
+                    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                </button>
+
+            </div>
             <!--<div class="col-xs-12 col-sm-12 col-md-6 .visible-sm .hidden-lg .hidden-md full-height header_bar centerHeaderBar">center header</div>-->
 
         </div>
         <div class="row firstRow">
-            <div class="col-xs-12 col-sm-4 col-md-4 full-height firstBar firstLeftBar">left content artist info</div>
-            <div class="col-xs-12 col-sm-8 col-md-8 full-height firstBar firstRightBar">right content album art</div>
+            <div class="col-xs-12 col-sm-8 col-md-8 full-height firstBar firstLeftBar">
+                <div class = "imageContainer"></div>
+                <div class="artistInfo col-xs-10 col-sm-8 col-md-8 text-center"></div>
+
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-md-4 full-height firstBar firstRightBar">
+                <h2>Spotify</h2>
+                <iframe class="spotify_follow" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
+                <iframe class="spotify_player" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+                <div class="shows"></div>
+            </div>
         </div>
 
         <div class="row footerRow">
-            <div class="col-xs-6 col-sm-3 col-md-3 full-height footer_bar leftfooterBar">left footer</div>
-            <div class="col-xs-6 col-sm-3 col-md-3 full-height footer_bar rightfooterBar">left-center footer</div>
-            <div class="col-xs-6 col-sm-3 col-md-3 full-height footer_bar leftfooterBar">right-center footer</div>
+            <div class="col-xs-6 col-sm-3 col-md-3 full-height footer_bar leftfooterBar"></div>
+            <div class="col-xs-6 col-sm-3 col-md-3 full-height footer_bar rightfooterBar"></div>
+            <div class="col-xs-6 col-sm-3 col-md-3 full-height footer_bar leftfooterBar"></div>
             <div class="col-xs-6 col-sm-3 col-md-3 full-height modalClose footer_bar rightfooterBar">
-                <button type="button" class="btn btn-lg btn-warning closeButton" data-dismiss="modal" onclick="modalClose()">Close</button>
+
             </div>
         </div>
     </div>

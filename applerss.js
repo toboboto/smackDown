@@ -4,6 +4,7 @@ var artist;
 
 //Array to store genres and their apple rss id's with a select box
 var searchGenre =[
+    {genre: "All", id: ""},
     {genre: "Alternative", id:20},
     {genre: "Blues", id:2},
     {genre: "Brazilian", id:1122},
@@ -55,7 +56,7 @@ var limitsSet = [10, 25, 50, 100, 200];
  * PARAMETERS: None
  */
 function appleApiRetrieve(){
-    $(".artist").remove();      //Remove for refresh purposes
+    $(".artist").empty();      //Remove for refresh purposes
     var searchNumber = $(".limit").val();   //Stores the amount of searches desired
     var searchIndex = $(".genreDropDown").find(":selected").attr("data-index"); //Stores the genre index
     var searchTypeIndex = $(".searchTypeDropDown").find(":selected").attr("data-index");    //
@@ -67,7 +68,6 @@ function appleApiRetrieve(){
             global_result = result;
             var musicFind = global_result.feed.entry;
             var musicLength = musicFind.length;
-            var $body = $("body");
             var $grid = $(".musicGrid");
 
             for (var i = 0; i < musicLength; i++) {
@@ -83,11 +83,9 @@ function appleApiRetrieve(){
                     src: thirdImage,
                 });
                 var musicContainer = $("<div>", {
-                    class: "col-xs-4 artist",
+                    class: "col-xs-12 col-sm-4 artist",
                 });
                 musicContainer.append(h3Title, pArtist, img)
-
-                $body.append(musicContainer);
 
                 $grid.append(musicContainer);
 
@@ -115,8 +113,18 @@ function appleApiRetrieve(){
 
 //ON DOCUMENT LOAD
 $(document).ready(function() {
+
     //Hide the modal
-    //$(".artistModal").hide(); // test
+    setTimeout(function(){
+        $(".getHitsLanding").fadeOut(1000);
+    }, 1500);
+
+    //Load top hits on page load
+    setTimeout(function(){
+        appleApiRetrieve();
+    }, 2000);
+
+    //$("#getHits").trigger("click");
 
     //Hidden div to store potential data
     $(".dummyLayout").hide();

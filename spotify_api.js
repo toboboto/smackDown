@@ -4,6 +4,7 @@
 var artistSpotifyID;
 var artistSpotifyObj;
 var artistSpotifyImgURL;
+var artistSpotifyURI;
 var albumSpotifyID;
 var albumSpotifyObj;
 var albumSpotifyImgURL;
@@ -11,6 +12,7 @@ var spotifyAlbum;
 var spotifyTrackURI;
 var search_value = "";
 var audio;
+var spotifyArtistName;
 
 var searchArtists = function (query) {
     $.ajax({
@@ -23,14 +25,17 @@ var searchArtists = function (query) {
         success: function (response) {
             //  resultsPlaceholder.innerHTML = template(response);
             artistSpotifyObj = response;
-            console.log(artistSpotifyObj);
+            console.log("artist object",artistSpotifyObj);
             artistSpotifyID = artistSpotifyObj.artists.items[0].id;
             console.log(artistSpotifyID);
             artistSpotifyImgURL = artistSpotifyObj.artists.items[0].images[0].url;
             console.log(artistSpotifyImgURL);
-            $(".firstLeftBar").append("<img src='"+artistSpotifyImgURL+"'>");
+            artistSpotifyURI = artistSpotifyObj.artists.items[0].uri;
+            $(".spotify_follow").attr("src","https://embed.spotify.com/follow/1/?uri="+ artistSpotifyURI);
+            $(".imageContainer").append("<img class='artistBg' src='"+artistSpotifyImgURL+"'>");
             console.log(search_value);
-
+            spotifyArtistName = artistSpotifyObj.artists.items[0].name;
+            $(".centerHeaderBar").append("<h2 class='text-center'>"+spotifyArtistName+"</h2>");
         }
     });
 };
@@ -66,9 +71,8 @@ var getTrackURI = function (albumId) {
             audio = new Audio(preview_link);
             audio.play();
             console.log("audio",audio);
-            (function() {
-                $(".clickable").trigger('click');
-            })();
+            $(".shows").append("<script type='text/javascript' src='http://www.bandsintown.com/javascripts/bit_widget.js'></script>");
+            $(".shows").append("<a href='http://www.bandsintown.com' class='bit-widget-initializer' data-artist='"+artist+"'>Bandsintown</a>");
         }
     });
 };
@@ -80,6 +84,18 @@ function play(){
 
 function modalClose(){
     audio.pause();
-    $(".firstLeftBar").empty();
+    $(".imageContainer").empty();
+    $(".shows").empty();
+    $(".centerHeaderBar").empty();
 
 }
+
+function search() {
+    artist = $(".search_field").val();  //NAME TO BE USED TO LOAD INTO ALL FUNCTIONS
+    console.log("Artist:", artist);
+    $('.modal').modal();
+    $('#modal').modal('toggle');
+    searchArtists(artist);
+    searchAlbums(artist);//WIKIPEDIA API LOAD AND DUMP
+    wikiApiLoad(spotifyArtistName);
+};
