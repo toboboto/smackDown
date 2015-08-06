@@ -1,0 +1,115 @@
+* {
+    #border: 1px solid black;
+    font-family: Yantramanav;
+    #margin: -1px;
+}
+body
+{
+    font-size: 0; /*eliminates space created by /n*/
+}
+
+div
+{
+    font-size: initial;  /*sets back to initial font size not inherited*/
+}
+.getHitsLanding{
+    padding-top: 15%;
+    padding-left: 5%;
+    width: 100%;
+    height: 100%;
+    color: #ceeaf8;
+    position:absolute;
+    font-size: 200px;
+    font-weight: 100;
+    z-index: 1000;
+    background: url("headphones.jpg") no-repeat;
+    background-size: cover;
+    box-shadow: 20px 10px 900px 20px #c59ef6 inset;
+}
+.headerBar{
+    margin-top: 20px;
+}
+.headerRow
+{
+    /*position: fixed;*/
+    height: 15vh;
+}
+.headerRow  div
+{
+    min-height: 2.5em;
+    height: 12vh;
+}
+.leftHeaderBar
+{
+    background-color: lightblue;
+}
+.rightHeaderBar
+{
+    background-color: lightgreen;
+}
+.centerHeaderBar
+{
+    background-color: lightgray;
+}
+.firstBar
+{
+    height: auto;
+    min-height: 50vh;
+}
+.artistModal{
+    width: 90%;
+    margin-left: 5%;
+    height: 80vh;
+    /*position:absolute;*/
+    background-color: lightgrey;
+    /*opacity: 0.95;*/
+}
+.artistModal{
+    position:fixed;
+    background: white;
+    top: 20px;
+}
+.artist{
+    background-color: #f0f0f0;
+    padding-bottom: 12px;
+    transition: .3s;
+}
+.artist:hover{
+    color: #e4e4e4;
+    background-color: #4a4a4a;
+    cursor: pointer;
+}
+.musicGrid{
+    margin-top: 15px;
+}
+.dropBtn{
+    font-size: 20px;
+    font-weight: 100;
+    display: inline-block;
+    background: #ababab;
+    border: none;
+    height: 40px;
+    border-radius: 0px 0px 0px 0px;
+}
+#getHits{
+    font-size: 20px;
+    font-weight: 100;
+    display: inline-block;
+    background: #ababab;
+    border: none;
+    height: 40px;
+    border-radius: 0px 0px 0px 0px;
+}
+#getHits:active{
+    background-color: #4a4a4a;
+
+}
+.dropBtn:hover{
+    background: #5e5e5e;
+}
+
+@media (max-width:991px) {
+    .getHitsLanding{
+        font-size: 100px;
+    }
+}

@@ -82,7 +82,7 @@ function appleApiRetrieve(){
                     src: thirdImage,
                 });
                 var musicContainer = $("<div>", {
-                    class: "col-xs-4 artist",
+                    class: "col-xs-4 text-center artist",
                 });
                 musicContainer.append(h3Title, pArtist, img)
 
@@ -111,8 +111,9 @@ function appleApiRetrieve(){
 
 //ON DOCUMENT LOAD
 $(document).ready(function() {
-    //Hide the modal
-
+    setTimeout(function(){
+        $(".getHitsLanding").fadeOut(1000);
+    }, 1500)
     //Hidden div to store potential data
     $(".dummyLayout").hide();
 

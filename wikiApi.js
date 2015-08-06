@@ -51,7 +51,7 @@ function wikiApiLoad(artistName) {
                         class: "yrsActive",
                         html: $(infobox[i]).find("td"),
                     });
-                    $(".artistInfo").append(divyears);
+                    $(".artistInfo").append(header, divyears);
                 }
                 //Check for a members header (th), then go into that header and check
                 if($(infobox[i]).find("th").text() == "Members") {

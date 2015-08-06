@@ -17,106 +17,33 @@
     <script src="wikiApi.js"></script>
     <script src="tobo.js"></script>
     <!-- mobile first -->
-<script>
-
-
-
-</script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        * {
-            #border: 1px solid black;
-            font-family: Yantramanav;
-            #margin: -1px;
-        }
-        body
-        {
-            font-size: 0; /*eliminates space created by /n*/
-        }
-
-        div
-        {
-            font-size: initial;  /*sets back to initial font size not inherited*/
-        }
-        .members a{
-            #pointer-events: none;
-        }
-    .headerRow
-    {
-        /*position: fixed;*/
-        height: 15vh;
-    }
-    .headerRow  div
-    {
-        min-height: 2.5em;
-        height: 12vh;
-    }
-    .leftHeaderBar
-    {
-        background-color: lightblue;
-    }
-    .rightHeaderBar
-    {
-        background-color: lightgreen;
-    }
-    .centerHeaderBar
-    {
-        background-color: lightgray;
-    }
-    .firstBar
-    {
-        height: auto;
-        min-height: 50vh;
-    }
-    .artistModal{
-        width: 90%;
-        margin-left: 5%;
-        height: 80vh;
-       /*position:absolute;*/
-        background-color: lightgrey;
-        /*opacity: 0.95;*/
-
-    }
-        .artistModal{
-            position:fixed;
-            background: white;
-            top: 20px;
-        }
-        .dropBtn{
-            display: inline-block;
-            background: #e0e0e0;
-            border: none;
-            height: 40px;
-            border-radius: 0;
-        }
-        .dropBtn:hover{
-            background: #9d9d9d;
-
-        }
-    </style>
 
 </head>
 <body>
 
+<div class = "getHitsLanding">
+    <p>Get Hits.</p>
+</div>
 <div class="container"> <!-- main container -->
 
-    <div class = "col-xs-12">
+    <div class = "headerBar col-xs-12">
         <!--Genre Dropdown Box-->
         <div role="presentation" class="dropdown col-xs-3">
-            <select class="genreDropDown dropBtn btn-info">
+            <select class="genreDropDown dropBtn">
             </select>
         </div>
 
         <!---Search Type Dropdown Box-->
         <div role="presentation" class="dropdown col-xs-3">
-            <select class="searchTypeDropDown dropBtn btn-info">
+            <select class="searchTypeDropDown dropBtn">
             </select>
         </div>
 
         <!---Search Limit Dropdown Box-->
         <div role="presentation" class="dropdown col-xs-3">
-            <select class="limit dropBtn btn-info">
+            <select class="limit dropBtn">
             </select>
         </div>
 
