@@ -88,9 +88,10 @@
 
     }
         .artistModal{
-            position:absolute;
+            position:fixed;
             background: white;
             top: 20px;
+            height: 95%;
         }
         .dropBtn{
             display: inline-block;
@@ -114,7 +115,24 @@
             font-size: 50px;
         }
 
+        .spotify_player{
+            text-align: center;
+            border: 1px solid;
+            display: inline-block;
+        }
 
+        .headerRow{
+            top: 20px;
+            width: 95%;
+        }
+
+        .firstRow{
+            margin-top: 120px;
+        }
+
+        .firstRightBar{
+            text-align: center;
+        }
 
     </style>
 
@@ -144,14 +162,17 @@
 
         <!---Search Button-->
         <button id = "getHits" value = "get it">Get Apple RSS hits</button>
+        <input type="text" class="search_field"/>
+        <button type="button" id="search_button" onclick="search()">Search</button>
+
     </div>
     <div class = "musicGrid col-xs-12">
     </div>
 
     <div class = "artistModal modal fade col-xs-12">
-        <div class="row headerRow">
-            <div class="col-xs-6 col-md-3 full-height header_bar leftHeaderBar">left header</div>
-            <div class="col-xs-6 col-md-3 full-height header_bar centerHeaderBar">
+        <div class="row headerRow navbar-fixed-top">
+            <div class="hidden-xs hidden-sm col-xs-6 col-md-3 full-height header_bar leftHeaderBar"></div>
+            <div class="hidden-xs hidden-sm col-xs-6 col-md-3 full-height header_bar centerHeaderBar">
             </div>
             <div class="col-xs-12 col-md-6 full-height header_bar rightHeaderBar">
                 <button type="button" class="btn btn-lg closeButton close" data-dismiss="modal" onclick="modalClose()">
@@ -163,16 +184,19 @@
 
         </div>
         <div class="row firstRow">
-            <div class="col-xs-12 col-sm-9 col-md-9 full-height firstBar firstLeftBar"></div>
-            <div class="col-xs-12 col-sm-3 col-md-3 full-height firstBar firstRightBar">
+            <div class="col-xs-12 col-sm-8 col-md-8 full-height firstBar firstLeftBar"></div>
+            <div class="col-xs-12 col-sm-4 col-md-4 full-height firstBar firstRightBar">
+                <p>Spotify</p>
+                <iframe class="spotify_follow" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
                 <iframe class="spotify_player" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+                <div class="shows"></div>
             </div>
         </div>
 
         <div class="row footerRow">
-            <div class="col-xs-6 col-sm-3 col-md-3 full-height footer_bar leftfooterBar">left footer</div>
-            <div class="col-xs-6 col-sm-3 col-md-3 full-height footer_bar rightfooterBar">left-center footer</div>
-            <div class="col-xs-6 col-sm-3 col-md-3 full-height footer_bar leftfooterBar">right-center footer</div>
+            <div class="col-xs-6 col-sm-3 col-md-3 full-height footer_bar leftfooterBar"></div>
+            <div class="col-xs-6 col-sm-3 col-md-3 full-height footer_bar rightfooterBar"></div>
+            <div class="col-xs-6 col-sm-3 col-md-3 full-height footer_bar leftfooterBar"></div>
             <div class="col-xs-6 col-sm-3 col-md-3 full-height modalClose footer_bar rightfooterBar">
 
             </div>
