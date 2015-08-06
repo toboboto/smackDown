@@ -3,6 +3,20 @@
     font-family: Yantramanav;
     #margin: -1px;
 }
+.getHitsLanding{
+    padding-top: 15%;
+    padding-left: 5%;
+    width: 100%;
+    height: 100%;
+    color: #ceeaf8;
+    position:absolute;
+    font-size: 200px;
+    font-weight: 100;
+    z-index: 1000;
+    background: url("headphones.jpg") no-repeat;
+    background-size: cover;
+    box-shadow: 20px 10px 900px 20px #c59ef6 inset;
+}
 body
 {
     font-size: 0; /*eliminates space created by /n*/
@@ -107,7 +121,6 @@ img {
     padding:40px;
     position: relative;
     margin-top: 25px;
-
     margin-left: 25px;
     background: rgba(100,100,100,.8);
     border-radius: 10px;
@@ -126,4 +139,46 @@ img {
 }
 .musicGrid{
     margin-top: 15px;
+}
+#getHits{
+    font-size: 20px;
+    font-weight: 100;
+    display: inline-block;
+    background: #95c6bd;
+    color: #f4f4f4;
+    border: none;
+    height: 40px;
+    border-radius: 0px 0px 0px 0px;
+    margin-bottom: 8px;
+}
+#search_button{
+    float: right;
+    width: 25%;
+    font-size: 20px;
+    font-weight: 100;
+    display: inline-block;
+    background: #ababab;
+    color: #eaeaea;
+    border: none;
+    height: 40px;
+    border-radius: 0px 0px 0px 0px;
+}
+.search_field{
+    width:70%;
+    font-size: 20px;
+    font-weight: 100;
+    display: inline-block;
+    background: #dddddd;
+    border: none;
+    height: 40px;
+    border-radius: 0px 0px 0px 0px;
+}
+.searchContainer{
+    border-radius: 6px;
+    padding: 6px;
+    background: #6cc4d8;
+}
+.dropdown{
+    display: inline-block;
+    margin-bottom: 8px;
 }

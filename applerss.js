@@ -4,6 +4,7 @@ var artist;
 
 //Array to store genres and their apple rss id's with a select box
 var searchGenre =[
+    {genre: "All", id: ""},
     {genre: "Alternative", id:20},
     {genre: "Blues", id:2},
     {genre: "Brazilian", id:1122},
@@ -82,7 +83,7 @@ function appleApiRetrieve(){
                     src: thirdImage,
                 });
                 var musicContainer = $("<div>", {
-                    class: "col-xs-4 artist",
+                    class: "col-xs-12 col-sm-4 artist",
                 });
                 musicContainer.append(h3Title, pArtist, img)
 
@@ -112,8 +113,18 @@ function appleApiRetrieve(){
 
 //ON DOCUMENT LOAD
 $(document).ready(function() {
+
     //Hide the modal
-    //$(".artistModal").hide(); // test
+    setTimeout(function(){
+        $(".getHitsLanding").fadeOut(1000);
+    }, 1500);
+
+    //Load top hits on page load
+    setTimeout(function(){
+        appleApiRetrieve();
+    }, 2000);
+
+    //$("#getHits").trigger("click");
 
     //Hidden div to store potential data
     $(".dummyLayout").hide();
