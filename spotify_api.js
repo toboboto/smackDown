@@ -4,6 +4,7 @@
 var artistSpotifyID;
 var artistSpotifyObj;
 var artistSpotifyImgURL;
+var artistSpotifyURI;
 var albumSpotifyID;
 var albumSpotifyObj;
 var albumSpotifyImgURL;
@@ -23,13 +24,16 @@ var searchArtists = function (query) {
         success: function (response) {
             //  resultsPlaceholder.innerHTML = template(response);
             artistSpotifyObj = response;
-            console.log(artistSpotifyObj);
+            console.log("artist object",artistSpotifyObj);
             artistSpotifyID = artistSpotifyObj.artists.items[0].id;
             console.log(artistSpotifyID);
             artistSpotifyImgURL = artistSpotifyObj.artists.items[0].images[0].url;
             console.log(artistSpotifyImgURL);
+            artistSpotifyURI = artistSpotifyObj.artists.items[0].uri;
+            $(".spotify_follow").attr("src","https://embed.spotify.com/follow/1/?uri="+ artistSpotifyURI);
             $(".firstLeftBar").append("<img src='"+artistSpotifyImgURL+"'>");
             console.log(search_value);
+
 
         }
     });
@@ -66,9 +70,8 @@ var getTrackURI = function (albumId) {
             audio = new Audio(preview_link);
             audio.play();
             console.log("audio",audio);
-            (function() {
-                $(".clickable").trigger('click');
-            })();
+            $(".firstRightBar").append("<script type='text/javascript' src='http://www.bandsintown.com/javascripts/bit_widget.js'></script>").append("<a href='http://www.bandsintown.com' class='bit-widget-initializer' data-artist='"+artist+"'>Bandsintown</a>");
+
         }
     });
 };
@@ -81,5 +84,16 @@ function play(){
 function modalClose(){
     audio.pause();
     $(".firstLeftBar").empty();
+    $(".firstRightBar").empty();
 
 }
+
+$(document).ready(function() {
+    $("#show-widget").click(function() {
+        new BIT.Widget({
+            "artist":artist,
+            "div_id":"tour-dates",
+            "bg_color": "#FFFFFF"
+        }).insert_events();
+    });
+});
