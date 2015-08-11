@@ -56,7 +56,7 @@ var limitsSet = [10, 25, 50, 100, 200];
  * PARAMETERS: None
  */
 function appleApiRetrieve(){
-    $(".artist").empty();      //Remove for refresh purposes
+    $(".musicGrid").empty();      //Remove for refresh purposes
     var searchNumber = $(".limit").val();   //Stores the amount of searches desired
     var searchIndex = $(".genreDropDown").find(":selected").attr("data-index"); //Stores the genre index
     var searchTypeIndex = $(".searchTypeDropDown").find(":selected").attr("data-index");    //
@@ -85,7 +85,12 @@ function appleApiRetrieve(){
                 var musicContainer = $("<div>", {
                     class: "col-xs-12 col-sm-4 artist",
                 });
-                musicContainer.append(h3Title, pArtist, img)
+                var headerContainer = $("<div>", {
+                    class: "col-xs-12 album-header",
+                    style: "overflow-y: hidden"
+                });
+                headerContainer.append(h3Title, pArtist)
+                musicContainer.append(headerContainer, img)
 
                 $grid.append(musicContainer);
 

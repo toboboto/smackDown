@@ -51,6 +51,7 @@ div
     min-height: 50vh;
 }
 .artist{
+    position: relative;
     background-color: #f0f0f0;
     padding-bottom: 12px;
     transition: .3s;
@@ -59,6 +60,9 @@ div
     color: #e4e4e4;
     background-color: #4a4a4a;
     cursor: pointer;
+}
+.album-header{
+    height: 100px;
 }
 .artistModal{
     width: 90%;
