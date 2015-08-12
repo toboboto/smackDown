@@ -64,14 +64,18 @@ div
 .album-header{
     height: 100px;
 }
+.artistBg{
+    background-image: url();          /*Blank background url changes to whatever artist you click on*/
+}
 .artistModal{
     width: 90%;
     margin-left: 5%;
     height: 80vw;
     /*position:absolute;*/
-    background-color: lightgrey;
+    background-repeat: no-repeat;
+    background-color: black;
+    background-size: 100%;
     /*opacity: 0.95;*/
-
 }
 .artistModal{
     position:fixed;
@@ -120,7 +124,8 @@ img {
     position: relative;
     margin-top: 25px;
     margin-left: 25px;
-    background: rgba(100,100,100,.8);
+    background: rgba(47, 47, 47, 0.8);
+    color: #dddddd;
     border-radius: 10px;
 }
 .firstRow{
@@ -187,5 +192,11 @@ img {
 
 .centerHeaderBar h1{
     padding-top: 10px;
+}
+
+.centerHeaderBar > h2,
+.artistInfo > h2{
+    font-size: 40px;
+    font-weight: 100;
 }
 

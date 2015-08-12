@@ -32,7 +32,12 @@ var searchArtists = function (query) {
             //console.log(artistSpotifyImgURL);
             artistSpotifyURI = artistSpotifyObj.artists.items[0].uri;
             $(".spotify_follow").attr("src","https://embed.spotify.com/follow/1/?uri="+ artistSpotifyURI);
-            $(".imageContainer").append("<img class='artistBg' src='"+artistSpotifyImgURL+"'>");
+            $(".artistModal").css({
+                "background-image": "url(" +artistSpotifyImgURL + ")",
+                "background-repeat": "no-repeat",
+                "background-color": "black",
+                "background-size": "100%"
+            });
             //console.log(search_value);
             spotifyArtistName = artistSpotifyObj.artists.items[0].name;
             wikiApiLoad(spotifyArtistName);
