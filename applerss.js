@@ -102,8 +102,6 @@ function appleApiRetrieve(){
                         $('.modal').modal();
                         $('#modal').modal('toggle');
                         //$(".artistModal").fadeIn();  // test remove to equip bootstrap modal
-                        wikiApiLoad(artist);
-
                         searchArtists(artist);
                         searchAlbums(artist);//WIKIPEDIA API LOAD AND DUMP
                     });
@@ -120,9 +118,10 @@ function appleApiRetrieve(){
 $(document).ready(function() {
 
     //Hide the modal
-    setTimeout(function(){
-        $(".getHitsLanding").fadeOut(1000);
-    }, 1500);
+    $(".getHitsLanding").hide();
+    //setTimeout(function(){
+    //    $(".getHitsLanding").fadeOut(1000);
+    //}, 1500);
 
     //Load top hits on page load
     setTimeout(function(){

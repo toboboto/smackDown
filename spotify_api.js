@@ -41,7 +41,7 @@ var searchArtists = function (query) {
             //console.log(search_value);
             spotifyArtistName = artistSpotifyObj.artists.items[0].name;
             wikiApiLoad(spotifyArtistName);
-            $(".centerHeaderBar").append("<h2 class='text-center'>"+spotifyArtistName+"</h2>");
+            $(".centerHeaderBar").html("<h2 class='text-center'>"+spotifyArtistName+"</h2>");
         }
     });
 };
