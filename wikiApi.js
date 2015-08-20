@@ -42,6 +42,7 @@ function wikiApiLoad(artistName) {
             $(".dummyLayout").html("");                                 //CLEAR HTML
             if (data.hasOwnProperty('parse')){                          //ADD NEW DATA IF PARSE PROPERTY EXISTS(it won't if search returns bad results)
                 $(".dummyLayout").html(data.parse.text["*"]);
+                console.log($(".dummyLayout p"));
             }
             var infobox = $(".infobox tbody").find("tr");               //THIS ARRAY HOLDS ALL THE INFO WE NEED FROM WIKIPEDIA!!!(undefined if we had a bad search)
             var headerArray = [];
@@ -72,6 +73,11 @@ function wikiApiLoad(artistName) {
                 console.log($(".redirectText").find("a").text());
                 wikiApiLoad($(".redirectText").find("a").text());
                 return;
+            }
+
+            if (artistName.substr(artistName.length-16)=="(disambiguation)"){
+                artistName = artistName.substr(0, artistName.length-17);
+                console.log("Disambig removed", artistName);
             }
 
             console.log(artistName);
@@ -113,35 +119,31 @@ function wikiApiLoad(artistName) {
 
             $(".artistInfo").empty();                                 //RESET
 
-            var header = $("<h2>",{
-                text: artistName,
-            });
-            $(".artistInfo").append(header);
             //We will comb through the infobox array for years active and members data
             for(var i = 0; i <= infobox.length; i++) {
                 //Check for a years active header (th), then go into that header and extract
                 if ($(infobox[i]).find("th").text().indexOf("Years") != -1){
                     var header = $("<h3>", {
-                        class: "yrsActiveHeader text-center",
+                        class: "yrsActiveHeader",
                         text: "Years Active"
                     });
                     $(".artistInfo").append(header);
                     var divyears = $("<div>", {
-                        class: "yrsActive text-center",
+                        class: "yrsActive",
                         text: $(infobox[i]).find("td").text(),
                     });
 
                     //
                     console.log($(header).text());
-                    $(".artistInfo").append(header, divyears);
+                    $(".centerHeaderBar").append(header, divyears);
                 }
                 if($(infobox[i]).find("th").text().indexOf("Associated") != -1) {
                     $(".associatedContainer").empty();
                     var divContainer = $("<div>",{
-                        class: "associatedContainer text-center",
+                        class: "associatedContainer",
                     })
                     var header = $("<h3>", {
-                        class: "associatedHeader text-center",
+                        class: "associatedHeader text-left",
                         text: artistName + "'s Associated Acts",
                     });
                     var divassociated = $("<div>", {
@@ -198,6 +200,7 @@ function wikiApiLoad(artistName) {
             });
             $(".associated").on("click", "a", function(){
                 var affiliatedName = $(this).text();
+                artist = $(this).text();
                 searchArtists(affiliatedName);
                 searchAlbums(affiliatedName);
             });
@@ -267,6 +270,7 @@ function affiliatedArtist(memberName){
             }
             $(".associated").on("click", "a", function(){
                 var affiliatedName = $(this).text();
+                artist = $(this).text();
                 searchArtists(affiliatedName);
                 searchAlbums(affiliatedName);
             });

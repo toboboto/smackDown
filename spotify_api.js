@@ -41,7 +41,7 @@ var searchArtists = function (query) {
             //console.log(search_value);
             spotifyArtistName = artistSpotifyObj.artists.items[0].name;
             wikiApiLoad(spotifyArtistName);
-            $(".centerHeaderBar").html("<h2 class='text-center'>"+spotifyArtistName+"</h2>");
+            $(".centerHeaderBar").html("<h2>"+spotifyArtistName+"</h2>");
         }
     });
 };
@@ -77,8 +77,8 @@ var getTrackURI = function (albumId) {
             audio = new Audio(preview_link);
             audio.play();
             //console.log("audio",audio);
-            $(".shows").append("<script type='text/javascript' src='http://www.bandsintown.com/javascripts/bit_widget.js'></script>");
-            $(".shows").append("<a href='http://www.bandsintown.com' class='bit-widget-initializer' data-artist='"+artist+"'>Bandsintown</a>");
+            $(".shows").html("<script type='text/javascript' src='http://www.bandsintown.com/javascripts/bit_widget.js'></script>");
+            $(".shows").html("<a href='http://www.bandsintown.com' class='bit-widget-initializer' data-artist='"+artist+"'>Bandsintown</a>");
         }
     });
 };

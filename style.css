@@ -42,7 +42,8 @@ div
 
 .rightHeaderBar
 {
-    background-color: lightgreen;
+    float: right;
+    z-index: 1000;
 }
 
 .firstBar
@@ -123,13 +124,16 @@ img {
     width: 95%;
 }
 .artistInfo{
-    padding:40px;
+    padding:20px;
     position: relative;
-    margin-top: 25px;
-    margin-left: 25px;
+    margin-top: 115px;
+    margin-left: 15px;
     background: rgba(47, 47, 47, 0.8);
     color: #dddddd;
-    border-radius: 10px;
+}
+.artistInfo h3,
+.centerHeaderBar h3{
+    font-weight: 100;
 }
 .firstRow{
     margin-top: 120px;
@@ -190,16 +194,47 @@ img {
 }
 
 .centerHeaderBar{
-    background-color: lightgreen;
+    background-color: black;
+    float: right;
+    color: #e0e0e0;
 }
+.rightHeaderBar{
+    z-index: 1000;
 
+}
+.centerHeaderBarBg{
+    margin-left: -20px;
+    height: 100px;
+    width: 120%;
+    position: fixed;
+    background: black;
+}
+.centerHeaderBarBg2{
+    top: 100px;
+    margin-left: -20px;
+    height: 250px;
+    width: 120%;
+    position: fixed;
+    background: linear-gradient(to top, rgba(0,0,0,.0), rgba(0,0,0,1));
+}
+.centerHeaderBarBg3{
+    top: 120px;
+    margin-left: -20px;
+    height: 300px;
+    width: 120%;
+    position: fixed;
+    background: linear-gradient(to top, rgba(0,0,0,0), rgba(0,0,0,1));
+}
 .centerHeaderBar h1{
     padding-top: 10px;
 }
 
 .centerHeaderBar > h2,
 .artistInfo > h2{
-    font-size: 40px;
+    font-size: 60px;
     font-weight: 100;
+}
+.glyphicon-remove-circle{
+    -webkit-filter: invert(100%);
 }
 
