@@ -237,4 +237,29 @@ img {
 .glyphicon-remove-circle{
     -webkit-filter: invert(100%);
 }
-
+li{
+    list-style: none;
+}
+.shows{
+    position: relative;
+    margin-top:5%;
+    background-color: rgba(47, 47, 47, 0.8);
+    color: #e1e1e1;
+}
+.shows tbody,
+.bit-location a,
+.bit-event-data{
+    font-size: 15px;
+    font-weight: 100;
+}
+.bit-share-links a{
+    -webkit-filter: grayscale(100%);
+    margin-right: 5px;
+    border-radius: 4px;
+}
+.bit-share-links a:hover{
+    -webkit-filter: grayscale(0%);
+}
+a{
+    color: #accce7;
+}

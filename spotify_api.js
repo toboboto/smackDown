@@ -36,7 +36,7 @@ var searchArtists = function (query) {
                 "background-image": "url(" +artistSpotifyImgURL + ")",
                 "background-repeat": "no-repeat",
                 "background-color": "#4a4a4a",
-                "background-size": "100%"
+                "background-size": "cover"
             });
             //console.log(search_value);
             spotifyArtistName = artistSpotifyObj.artists.items[0].name;

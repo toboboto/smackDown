@@ -147,7 +147,7 @@ function wikiApiLoad(artistName) {
                         text: artistName + "'s Associated Acts",
                     });
                     var divassociated = $("<div>", {
-                        class: "associated",
+                        class: "associated text-left",
                         html: $(infobox[i]).find("td"),
                     });
                     $(divContainer).append(header, divassociated);
@@ -155,15 +155,21 @@ function wikiApiLoad(artistName) {
                     $('.associated a').removeAttr('href');
                 }
                 //Check for a members header (th), then go into that header and check
-                if($(infobox[i]).find("th").text() == "Members" || $(infobox[i]).find("th").text() == "Past members") {
+                if($(infobox[i]).find("th").text() == "Members" || ($(infobox[i]).find("th").text()).indexOf("Past") != -1) {
                     //Check if the members list are in the form of <a> tags
+                    var memberType = null;
+                    if ($(infobox[i]).find("th").text() != "Members" ){
+                        memberType = "Past Members";
+                    } else {
+                        memberType = "Members";
+                    }
                     if ($(infobox[i]).find("td").has("a")[0] != undefined) {
                         var header = $("<h3>", {
-                            class: "membersHeader",
-                            text: "Members",
+                            class: "membersHeader text-left",
+                            text: memberType
                         });
                         var divmembers = $("<div>", {
-                            class: "member text-center",
+                            class: "member text-left",
                             html: $(infobox[i]).find("td"),
                         });
                         $(".artistInfo").append(header, divmembers);
@@ -173,14 +179,14 @@ function wikiApiLoad(artistName) {
                     //Check if the members list are not in the form of <a> tags
                     else if ($(infobox[i]).find("td").has("a")[0] == undefined){
                         var header = $("<h3>", {
-                            class: "membersHeader",
-                            text: "Members",
+                            class: "membersHeader text-left",
+                            text: memberType
                         });
                         var membersText = $(infobox[i]).find("td").text();
                         var membersArray = membersText.split('\n');
                         console.log(membersArray);
                         var divmembers = $("<div>", {
-                            class: "members",
+                            class: "members text-left",
                         });
                         for(var j = 0; j < membersArray.length; j++){
                             var pMembers = $("<p>",{
@@ -253,14 +259,14 @@ function affiliatedArtist(memberName){
                 if($(infobox[i]).find("th").text() == "Associated acts") {
                     $(".associatedContainer").empty();
                     var divContainer = $("<div>",{
-                        class: "associatedContainer text-center",
+                        class: "associatedContainer",
                     })
                     var header = $("<h3>", {
                         class: "associatedHeader text-center",
                         text: memberName + "'s Associated Acts",
                     });
                     var divassociated = $("<div>", {
-                        class: "associated",
+                        class: "associated text-left",
                         html: $(infobox[i]).find("td"),
                     });
                     $(divContainer).append(header, divassociated);
