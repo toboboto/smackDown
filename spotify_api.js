@@ -72,7 +72,10 @@ var getTrackURI = function (albumId) {
             //console.log("album",spotifyAlbum);
             spotifyTrackURI = spotifyAlbum.tracks.items[0].uri;
             //console.log(spotifyTrackURI);
-            $(".spotify_player").attr("src","https://embed.spotify.com/?uri="+ spotifyTrackURI);
+            $(".spotify_player").attr("src", "https://embed.spotify.com/?uri=" + spotifyTrackURI)
+                .find(".play-pause-btn").css({
+                    'top': '-26%'
+                });
             var preview_link = spotifyAlbum.tracks.items[0].preview_url;
             audio = new Audio(preview_link);
             audio.play();
