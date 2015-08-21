@@ -65,21 +65,15 @@ div
 }
 
 .artistModal{
-    width: 90%;
-    margin-left: 5%;
-    height: 80vw;
+    width: 100%;
+    height: 100%;
     /*position:absolute;*/
     background-repeat: no-repeat;
     background-color: black;
     background-size: 100%;
-    /*opacity: 0.95;*/
-}
-
-.artistModal{
     position:fixed;
     background: white;
-    top: 20px;
-    height: 95%;
+    /*opacity: 0.95;*/
 }
 .dropBtn{
     font-size: 20px;
@@ -105,21 +99,26 @@ img {
 }
 
 .spotify_player{
+    border: none;
     width:100%;
     height:80px;
     text-align: center;
-    border: 1px solid;
     display: inline-block;
+    border: none;
+    border-radius: 2px;
+    -webkit-filter: grayscale(50%);
 }
 
 .headerRow{
     top: 20px;
     width: 95%;
 }
+.artistInfo{
+    margin-top:20px;
+}
 .artistInfoContent{
-    padding:20px;
+    padding:10px 20px 20px 20px;
     position: relative;
-    margin-top: 55px;
     margin-left: 15px;
     background: rgba(47, 47, 47, 0.8);
     color: #dddddd;
@@ -131,7 +130,6 @@ img {
     font-weight: 100;
 }
 .firstRow{
-    margin-top: 24vh;
     overflow: hidden;
 }
 .firstLeftBar{
@@ -201,7 +199,7 @@ img {
     z-index:1005;
     margin-left: -20px;
     height: 24vh;
-    min-height: 210px;
+    min-height: 220px;
     width: 120%;
     position: fixed;
     background: black;
@@ -240,7 +238,7 @@ li{
 }
 .shows{
     position: relative;
-    margin-top:10%;
+    margin-top:20px;
     background-color: rgba(47, 47, 47, 0.8);
     color: #e1e1e1;
 }
@@ -266,4 +264,34 @@ a{
 }
 .spotify_follow{
     height:1px;
+}
+.filler{
+    width: 100%;
+    height:45%;
+}
+@media(max-width:991px){
+    .artistHeader h2{
+        font-size: 40px;
+    }
+}
+@media(max-width:767px){
+    .artistHeader h2{
+        font-size: 32px;
+    }
+    .headerSub h3{
+        font-size: 18px;
+    }
+    .artistSpotify{
+        height: 38px;
+        overflow: hidden;
+    }
+    .spotify_player{
+        position:absolute;
+        bottom:0;
+        left:0;
+    }
+    .player .album-art-container .album-art img{
+        position: absolute;
+        bottom: -20%;
+    }
 }
