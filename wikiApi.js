@@ -117,17 +117,24 @@ function wikiApiLoad(artistName) {
                 artistName = artistName.substr(0, artistName.length-7);
             }
 
-            $(".artistInfo").empty();                                 //RESET
+            $(".artistInfo").empty();//RESET
+            var artistInfoContent = $("<div>", {
+                class: "artistInfoContent col-xs-10 col-sm-8 col-md-8",
+            });
+            $(".artistInfo").append(artistInfoContent);
 
             //We will comb through the infobox array for years active and members data
             for(var i = 0; i <= infobox.length; i++) {
                 //Check for a years active header (th), then go into that header and extract
                 if ($(infobox[i]).find("th").text().indexOf("Years") != -1){
+                    var headerSub = $("<div>",{
+                        class: "headerSub col-xs-12"
+                    });
                     var header = $("<h3>", {
                         class: "yrsActiveHeader",
                         text: "Years Active"
                     });
-                    $(".artistInfo").append(header);
+                    $(".artistInfoContent").append(header);
                     var divyears = $("<div>", {
                         class: "yrsActive",
                         text: $(infobox[i]).find("td").text(),
@@ -135,7 +142,8 @@ function wikiApiLoad(artistName) {
 
                     //
                     console.log($(header).text());
-                    $(".centerHeaderBar").append(header, divyears);
+                    $(headerSub).append(header, divyears)
+                    $(".artistSub").append(headerSub);
                 }
                 if($(infobox[i]).find("th").text().indexOf("Associated") != -1) {
                     $(".associatedContainer").empty();
@@ -151,7 +159,7 @@ function wikiApiLoad(artistName) {
                         html: $(infobox[i]).find("td"),
                     });
                     $(divContainer).append(header, divassociated);
-                    $(".artistInfo").append(divContainer);
+                    $(".artistInfoContent").append(divContainer);
                     $('.associated a').removeAttr('href');
                 }
                 //Check for a members header (th), then go into that header and check
@@ -172,7 +180,8 @@ function wikiApiLoad(artistName) {
                             class: "member text-left",
                             html: $(infobox[i]).find("td"),
                         });
-                        $(".artistInfo").append(header, divmembers);
+                        artistInfoContent.append(header, divmembers);
+                        $(".artistInfoContent").append(artistInfoContent);
                         console.log(divmembers);
                         $('.member a').removeAttr('href');
                     }
@@ -195,9 +204,12 @@ function wikiApiLoad(artistName) {
                             });
                             $(divmembers).append(pMembers);
                         }
-                        $(".artistInfo").append(header, divmembers);
+                        $(".artistInfoContent").append(header, divmembers);
                     }
                 }
+            }
+            if($(".artistInfoContent").html() == ""){
+                $(".artistInfoContent").remove();
             }
             //On click of the member element, pull a list of affiliated acts
             $(".member").on("click", "a, p", function(){

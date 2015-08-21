@@ -41,7 +41,7 @@ var searchArtists = function (query) {
             //console.log(search_value);
             spotifyArtistName = artistSpotifyObj.artists.items[0].name;
             wikiApiLoad(spotifyArtistName);
-            $(".centerHeaderBar").html("<h2>"+spotifyArtistName+"</h2>");
+            $(".artistHeader").append("<h2>"+spotifyArtistName+"</h2>");
         }
     });
 };
@@ -79,6 +79,21 @@ var getTrackURI = function (albumId) {
             //console.log("audio",audio);
             $(".shows").html("<script type='text/javascript' src='http://www.bandsintown.com/javascripts/bit_widget.js'></script>");
             $(".shows").html("<a href='http://www.bandsintown.com' class='bit-widget-initializer' data-artist='"+artist+"'>Bandsintown</a>");
+            $("#bit-widget-0").ready(function(){
+                console.log("loaded");
+                $("#bit-events td .bit-uiButton").css({
+                    'padding':'11px 8px 0 8px',
+                    'width': '60px',
+                    'height': '40px',
+                    'border':'none',
+                    'background': 'rgba(119,119,119,.7)'
+                });
+                $("#bit-events td .bit-uiButton a").css({
+                    color: '#accce7',
+                    'font-size':'20px',
+                    'font-weight':'100'
+                });
+            });
         }
     });
 };
@@ -92,7 +107,7 @@ function modalClose(){
     audio.pause();
     $(".imageContainer").empty();
     $(".shows").empty();
-    $(".centerHeaderBar").empty();
+    $(".artistHeader, .artistSub, .spotify_follow, .spotify_player").empty();
 
 }
 
