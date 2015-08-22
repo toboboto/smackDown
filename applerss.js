@@ -2,6 +2,8 @@ var test;
 var global_result = null;
 var artist;
 
+var randomBg = ["radio1.jpg", "radio2.jpg", "radio3.jpg", "radio4.jpg", "radio5.jpg"];
+
 //Array to store genres and their apple rss id's with a select box
 var searchGenre =[
     {genre: "All", id: ""},
@@ -114,11 +116,17 @@ function appleApiRetrieve(){
 
 
 
+
 //ON DOCUMENT LOAD
 $(document).ready(function() {
-
+    var bgSelect = Math.floor(Math.random()*5);
+    console.log(bgSelect + " loaded");
+    $('body').css({
+        "background-image": "url("+randomBg[bgSelect]+")"
+    });
     //Hide the modal
     $(".getHitsLanding").hide();
+    $(".errorContainer").hide();
     //setTimeout(function(){
     //    $(".getHitsLanding").fadeOut(1000);
     //}, 1500);

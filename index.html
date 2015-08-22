@@ -59,9 +59,15 @@
         <div class = "col-md-4 searchContainer">
             <input type="text" class="search_field"/>
             <button type="button" id="search_button" onclick="search()">Search</button>
+            <div class = "errorContainer">
+                <div class = "errorPointer">
+                </div>
+                <div class = "errorSearch">
+                    Please input artist name
+                </div>
+            </div>
         </div>
 
-    </div>
     <div class = "musicGrid col-xs-12 text-center">
     </div>
 
@@ -113,6 +119,12 @@
 
 <div class = "tophits"></div>
 <div class = "dummyLayout"></div>
+
+<style>
+    .player .album-art-container .album-art .play-pause-btn{
+        top: -19%;
+    }
+</style>
 </body>
 
 </html>

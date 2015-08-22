@@ -41,7 +41,7 @@ var searchArtists = function (query) {
             //console.log(search_value);
             spotifyArtistName = artistSpotifyObj.artists.items[0].name;
             wikiApiLoad(spotifyArtistName);
-            $(".artistHeader").append("<h2>"+spotifyArtistName+"</h2>");
+            $(".artistHeader").html("<h2>"+spotifyArtistName+"</h2>");
         }
     });
 };
@@ -68,35 +68,25 @@ var getTrackURI = function (albumId) {
     $.ajax({
         url: 'https://api.spotify.com/v1/albums/' + albumId,
         success: function (response) {
+            if(audio){
+                audio.pause();
+            }
             spotifyAlbum = response;
             //console.log("album",spotifyAlbum);
             spotifyTrackURI = spotifyAlbum.tracks.items[0].uri;
             //console.log(spotifyTrackURI);
-            $(".spotify_player").attr("src", "https://embed.spotify.com/?uri=" + spotifyTrackURI)
-                .find(".play-pause-btn").css({
-                    'top': '-26%'
-                });
+            $(".spotify_player").attr("src", "https://embed.spotify.com/?uri=" + spotifyTrackURI);
             var preview_link = spotifyAlbum.tracks.items[0].preview_url;
             audio = new Audio(preview_link);
             audio.play();
             //console.log("audio",audio);
             $(".shows").html("<script type='text/javascript' src='http://www.bandsintown.com/javascripts/bit_widget.js'></script>");
             $(".shows").html("<a href='http://www.bandsintown.com' class='bit-widget-initializer' data-artist='"+artist+"'>Bandsintown</a>");
-            $("#bit-widget-0").ready(function(){
-                console.log("loaded");
-                $("#bit-events td .bit-uiButton").css({
-                    'padding':'11px 8px 0 8px',
-                    'width': '60px',
-                    'height': '40px',
-                    'border':'none',
-                    'background': 'rgba(119,119,119,.7)'
+            setTimeout(function(){
+                $(".album-art-container .clickable").css({
+                    'margin-top': '20px'
                 });
-                $("#bit-events td .bit-uiButton a").css({
-                    color: '#accce7',
-                    'font-size':'20px',
-                    'font-weight':'100'
-                });
-            });
+            }, 9000);
         }
     });
 };
@@ -116,6 +106,10 @@ function modalClose(){
 
 function search() {
     artist = $(".search_field").val();  //NAME TO BE USED TO LOAD INTO ALL FUNCTIONS
+    if(!artist){
+        $(".errorContainer").stop().fadeIn().delay(3000).fadeOut();
+        return;
+    }
     console.log("Artist:", artist);
     $('.modal').modal();
     $('#modal').modal('toggle');

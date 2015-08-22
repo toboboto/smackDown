@@ -119,7 +119,7 @@ function wikiApiLoad(artistName) {
 
             $(".artistInfo").empty();//RESET
             var artistInfoContent = $("<div>", {
-                class: "artistInfoContent col-xs-10 col-sm-8 col-md-8",
+                class: "artistInfoContent col-xs-10 col-sm-8",
             });
             $(".artistInfo").append(artistInfoContent);
 
@@ -143,7 +143,7 @@ function wikiApiLoad(artistName) {
                     //
                     console.log($(header).text());
                     $(headerSub).append(header, divyears)
-                    $(".artistSub").append(headerSub);
+                    $(".artistSub").html(headerSub);
                 }
                 if($(infobox[i]).find("th").text().indexOf("Associated") != -1) {
                     $(".associatedContainer").empty();
@@ -269,12 +269,12 @@ function affiliatedArtist(memberName){
             var infobox = $(".infobox tbody").find("tr");              //THIS ARRAY HOLDS ALL THE INFO WE NEED FROM WIKIPEDIA!!!
             for(var i = 0; i <= infobox.length; i++){
                 if($(infobox[i]).find("th").text() == "Associated acts") {
-                    $(".associatedContainer").empty();
+                    $(".associatedMemberContainer").remove();
                     var divContainer = $("<div>",{
-                        class: "associatedContainer",
+                        class: "associatedMemberContainer col-xs-10 col-sm-8",
                     })
                     var header = $("<h3>", {
-                        class: "associatedHeader text-center",
+                        class: "associatedHeader text-left",
                         text: memberName + "'s Associated Acts",
                     });
                     var divassociated = $("<div>", {

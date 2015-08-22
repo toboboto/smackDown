@@ -3,6 +3,13 @@
     font-family: Yantramanav;
     #margin: -1px;
 }
+body{
+    background-color: #1d1d1d;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-size: 0; /*eliminates space created by /n*/
+}
 .getHitsLanding{
     padding-top: 15%;
     padding-left: 5%;
@@ -17,11 +24,37 @@
     background-size: cover;
     box-shadow: 20px 10px 900px 20px #c59ef6 inset;
 }
-body
-{
-    font-size: 0; /*eliminates space created by /n*/
+.errorContainer{
+    position: absolute;
+    height: 60px;
+    width: 200px;
+    z-index: 1001;
 }
-
+.errorSearch{
+    height: 45px;
+    width: 200px;
+    background: #787c80;
+    position: absolute;
+    bottom:0;
+    padding-top: 10px;
+    padding-left: 16px;
+    font-weight: 100;
+    font-size: 17px;
+    color: #cce8ff;
+    box-shadow: 10px 10px 20px #3d3d3d;
+    border-radius: 2px;
+    border-bottom: 2px solid #3a3c3f;
+    border-right: 2px solid #5e6367;
+    border-left: 2px solid #777d82;
+}
+.errorPointer{
+    border-bottom: 40px solid #787c80;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
 div
 {
     font-size: initial;  /*sets back to initial font size not inherited*/
@@ -44,19 +77,30 @@ div
 }
 .artist{
     position: relative;
-    background-color: #f0f0f0;
+    background-color: rgba(240, 240, 240, .8);
     padding-bottom: 12px;
-    transition: .3s;
+    min-height: 490px;
+    overflow: hidden;
 }
 .artist:hover{
     color: #e4e4e4;
-    background-color: #4a4a4a;
+    animation-name: artistHover;
+    animation-iteration-count: infinite;
+    animation-duration: 4s;
     cursor: pointer;
+}
+@keyframes artistHover{
+    0%  {background-color: #4a4a4a;}
+    25%  {background-color: #49595d;}
+    50%  {background-color: #5d4648;}
+    75%  {background-color: #445f4c;}
+    100%  {background-color: #4a4a4a;}
 }
 .album-header{
     height: 100px;
 }
 .artistBg{
+    background-position: 0px -20%;
     margin-left: -15px;
     position: fixed;
     width: 100%;
@@ -76,16 +120,25 @@ div
     /*opacity: 0.95;*/
 }
 .dropBtn{
+    background-image: url(chevron.png);
+    background-repeat: no-repeat;
+    background-position: 95% 45%;
     font-size: 20px;
     font-weight: 100;
     display: inline-block;
-    background: #ababab;
+    background-color: #cccccc;
+    color: black;
     border: none;
     height: 40px;
-    border-radius: 0px 0px 0px 0px;
+    padding: 0 30px 0 15px;
+    -webkit-filter: invert(100%);
+    -webkit-appearance: none;
+    border-radius: 0;
 }
 .dropBtn:hover{
-    background: #5e5e5e;
+    background-image: url(chevron.png);
+    -webkit-filter: invert(20%);
+
 }
 
 img {
@@ -116,7 +169,8 @@ img {
 .artistInfo{
     margin-top:20px;
 }
-.artistInfoContent{
+.artistInfoContent,
+.associatedMemberContainer{
     padding:10px 20px 20px 20px;
     position: relative;
     margin-left: 15px;
@@ -124,6 +178,8 @@ img {
     color: #dddddd;
 }
 .artistInfoContent h3,
+.associatedContainer h3,
+.associatedMemberContainer h3,
 .centerHeaderBar .artistHeader h3,
 .headerSub h3,
 .yrsActive{
@@ -148,7 +204,7 @@ img {
     font-size: 20px;
     font-weight: 100;
     display: inline-block;
-    background: #95c6bd;
+    background: rgba(149,198,189,.4);
     color: #f4f4f4;
     border: none;
     height: 40px;
@@ -172,21 +228,22 @@ img {
     font-size: 20px;
     font-weight: 100;
     display: inline-block;
-    background: #dddddd;
+    background: rgba(40, 40, 40, .4);
     border: none;
     height: 40px;
     border-radius: 0px 0px 0px 0px;
+    padding-left: 10px;
 }
 .searchContainer{
     border-radius: 6px;
     padding: 6px;
-    background: #6cc4d8;
+    background: rgba(174,203,216, .3);
+    color: #e2e2e2;
 }
-.dropdown{
+.dropdown {
     display: inline-block;
     margin-bottom: 8px;
 }
-
 .centerHeaderBar{
     padding: 0;
     background-color: black;
@@ -226,7 +283,8 @@ img {
 }
 
 .centerHeaderBar > .artistHeader > h2,
-.artistInfoContent > h2{
+.artistInfoContent > h2,
+.associatedMemberContainer > h2{
     font-size: 60px;
     font-weight: 100;
 }
@@ -267,11 +325,19 @@ a{
 }
 .filler{
     width: 100%;
-    height:45%;
+    height:35%;
+}
+@media(max-height: 620px){
+    .filler{
+        height: 45%;
+    }
 }
 @media(max-width:991px){
     .centerHeaderBar > .artistHeader > h2{
         font-size: 40px;
+    }
+    .artist{
+        min-height:370px;
     }
 }
 @media(max-width:767px){
@@ -302,4 +368,15 @@ a{
     .firstLeftBar{
         padding-right: 0;
     }
+    .firstLeftBar{
+        padding-left: 2px;
+    }
+
+}
+.player .album-art-container{
+    margin-top: 20px;
+}
+.genreDropDown li,
+.searchTypeDropDown li{
+    background-color: green;
 }
