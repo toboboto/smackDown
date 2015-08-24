@@ -2,6 +2,9 @@ var test;
 var global_result = null;
 var artist;
 
+var randomLandingBg = ["headphones.jpg", "landing1.jpg", "landing2.jpg"];
+var randomBg = ["radio1.jpg", "radio2.jpg", "radio3.jpg", "radio4.jpg", "radio5.jpg"];
+
 //Array to store genres and their apple rss id's with a select box
 var searchGenre =[
     {genre: "All", id: ""},
@@ -102,8 +105,6 @@ function appleApiRetrieve(){
                         $('.modal').modal();
                         $('#modal').modal('toggle');
                         //$(".artistModal").fadeIn();  // test remove to equip bootstrap modal
-                        wikiApiLoad(artist);
-
                         searchArtists(artist);
                         searchAlbums(artist);//WIKIPEDIA API LOAD AND DUMP
                     });
@@ -116,10 +117,23 @@ function appleApiRetrieve(){
 
 
 
+
 //ON DOCUMENT LOAD
 $(document).ready(function() {
+    var landingBgSelect = Math.floor(Math.random()*3);
+    var bgSelect = Math.floor(Math.random()*5);
+    console.log(bgSelect + " loaded");
+    $('body').css({
+        "background-image": "url("+randomBg[bgSelect]+")"
+    });
 
-    //Hide the modal
+    $(".getHitsBg").css({
+        "background-image": "url("+randomLandingBg[landingBgSelect]+")"
+    });
+
+
+    //$(".getHitsLanding").hide();
+    $(".errorContainer").hide();
     setTimeout(function(){
         $(".getHitsLanding").fadeOut(1000);
     }, 1500);
@@ -127,7 +141,7 @@ $(document).ready(function() {
     //Load top hits on page load
     setTimeout(function(){
         appleApiRetrieve();
-    }, 2000);
+    }, 1000);
 
     //$("#getHits").trigger("click");
 

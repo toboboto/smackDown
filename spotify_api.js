@@ -32,11 +32,16 @@ var searchArtists = function (query) {
             //console.log(artistSpotifyImgURL);
             artistSpotifyURI = artistSpotifyObj.artists.items[0].uri;
             $(".spotify_follow").attr("src","https://embed.spotify.com/follow/1/?uri="+ artistSpotifyURI);
-            $(".imageContainer").append("<img class='artistBg' src='"+artistSpotifyImgURL+"'>");
+            $(".artistBg").css({
+                "background-image": "url(" +artistSpotifyImgURL + ")",
+                "background-repeat": "no-repeat",
+                "background-color": "#4a4a4a",
+                "background-size": "cover"
+            });
             //console.log(search_value);
             spotifyArtistName = artistSpotifyObj.artists.items[0].name;
             wikiApiLoad(spotifyArtistName);
-            $(".centerHeaderBar").append("<h2 class='text-center'>"+spotifyArtistName+"</h2>");
+            $(".artistHeader").html("<h2>"+spotifyArtistName+"</h2>");
         }
     });
 };
@@ -63,17 +68,25 @@ var getTrackURI = function (albumId) {
     $.ajax({
         url: 'https://api.spotify.com/v1/albums/' + albumId,
         success: function (response) {
+            if(audio){
+                audio.pause();
+            }
             spotifyAlbum = response;
             //console.log("album",spotifyAlbum);
             spotifyTrackURI = spotifyAlbum.tracks.items[0].uri;
             //console.log(spotifyTrackURI);
-            $(".spotify_player").attr("src","https://embed.spotify.com/?uri="+ spotifyTrackURI);
+            $(".spotify_player").attr("src", "https://embed.spotify.com/?uri=" + spotifyTrackURI);
             var preview_link = spotifyAlbum.tracks.items[0].preview_url;
             audio = new Audio(preview_link);
             audio.play();
             //console.log("audio",audio);
-            $(".shows").append("<script type='text/javascript' src='http://www.bandsintown.com/javascripts/bit_widget.js'></script>");
-            $(".shows").append("<a href='http://www.bandsintown.com' class='bit-widget-initializer' data-artist='"+artist+"'>Bandsintown</a>");
+            $(".shows").html("<script type='text/javascript' src='http://www.bandsintown.com/javascripts/bit_widget.js'></script>");
+            $(".shows").html("<a href='http://www.bandsintown.com' class='bit-widget-initializer' data-artist='"+artist+"'>Bandsintown</a>");
+            setTimeout(function(){
+                $(".album-art-container .clickable").css({
+                    'margin-top': '20px'
+                });
+            }, 9000);
         }
     });
 };
@@ -87,12 +100,16 @@ function modalClose(){
     audio.pause();
     $(".imageContainer").empty();
     $(".shows").empty();
-    $(".centerHeaderBar").empty();
+    $(".artistHeader, .artistSub, .spotify_follow, .spotify_player").empty();
 
 }
 
 function search() {
     artist = $(".search_field").val();  //NAME TO BE USED TO LOAD INTO ALL FUNCTIONS
+    if(!artist){
+        $(".errorContainer").stop().fadeIn().delay(3000).fadeOut();
+        return;
+    }
     console.log("Artist:", artist);
     $('.modal').modal();
     $('#modal').modal('toggle');

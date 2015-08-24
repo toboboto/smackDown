@@ -17,7 +17,6 @@
     <script src="applerss.js"></script>
     <script src="spotify_api.js"></script>
     <script src="wikiApi.js"></script>
-    <script src="tobo.js"></script>
     <!-- mobile first -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,6 +25,7 @@
 <body>
 
 <div class = "getHitsLanding">
+    <div class = "getHitsBg"></div>
     <p>Get Hits.</p>
 </div>
 
@@ -60,37 +60,49 @@
         <div class = "col-md-4 searchContainer">
             <input type="text" class="search_field"/>
             <button type="button" id="search_button" onclick="search()">Search</button>
+            <div class = "errorContainer">
+                <div class = "errorPointer">
+                </div>
+                <div class = "errorSearch">
+                    Please input artist name
+                </div>
+            </div>
         </div>
 
-    </div>
     <div class = "musicGrid col-xs-12 text-center">
     </div>
 
     <div class = "artistModal modal fade col-xs-12">
-        <div class="row headerRow navbar-fixed-top">
-            <div class="col-xs-11 full-height header_bar centerHeaderBar">
-            </div>
+        <div class = "artistBg"></div>
+        <div class="centerHeaderBarBg">
+        </div>
+        <div class="centerHeaderBarBg2">
+        </div>
+        <div class="centerHeaderBarBg3">
+        </div>
+        <div class = "col-xs-12 filler"></div>
+        <div class="row headerRow col-xs-12 navbar-fixed-top">
             <div class="col-xs-1 full-height header_bar rightHeaderBar">
                 <button type="button" class="btn btn-lg closeButton close" data-dismiss="modal" onclick="modalClose()">
                     <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
                 </button>
-
             </div>
+            <div class="col-xs-10 full-height header_bar centerHeaderBar">
+                <div class = "artistHeader col-xs-12"></div>
+                <div class = "artistSub col-xs-12 col-md-5 col-lg-3"></div>
+                <div class = "artistSpotify col-xs-12 col-md-6">
+                    <iframe class="spotify_follow" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
+                    <iframe class="spotify_player" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+                </div>
+            </div>
+
             <!--<div class="col-xs-12 col-sm-12 col-md-6 .visible-sm .hidden-lg .hidden-md full-height header_bar centerHeaderBar">center header</div>-->
 
         </div>
-        <div class="row firstRow">
-            <div class="col-xs-12 col-sm-8 col-md-8 full-height firstBar firstLeftBar">
-                <div class = "imageContainer"></div>
-                <div class="artistInfo col-xs-10 col-sm-8 col-md-8 text-center"></div>
-
-            </div>
-
-            <div class="col-xs-12 col-sm-4 col-md-4 full-height firstBar firstRightBar">
-                <h2>Spotify</h2>
-                <iframe class="spotify_follow" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
-                <iframe class="spotify_player" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
-                <div class="shows"></div>
+        <div class="row col-xs-12 firstRow">
+            <div class="col-xs-12 full-height firstBar firstLeftBar">
+                <div class="artistInfo col-xs-12 col-md-6"></div>
+                <div class="shows col-xs-12 col-md-6"></div>
             </div>
         </div>
 
@@ -108,6 +120,12 @@
 
 <div class = "tophits"></div>
 <div class = "dummyLayout"></div>
+
+<style>
+    .player .album-art-container .album-art .play-pause-btn{
+        top: -19%;
+    }
+</style>
 </body>
 
 </html>
