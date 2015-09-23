@@ -134,9 +134,9 @@ $(document).ready(function() {
 
     //$(".getHitsLanding").hide();
     $(".errorContainer").hide();
-    setTimeout(function(){
-        $(".getHitsLanding").fadeOut(1000);
-    }, 1500);
+    //setTimeout(function(){
+     //   $(".getHitsLanding").fadeOut(1000);
+    //}, 1500);
 
     //Load top hits on page load
     setTimeout(function(){
